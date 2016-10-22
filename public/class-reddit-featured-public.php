@@ -140,7 +140,11 @@ class Reddit_Featured_Public {
 					/* Join the discussion action prompt */
 					echo '<div class="r-comment">';
 					echo '  <div class="r-meta">';
-					echo '	<strong>View ' . ($thread['num_comments'] - count($comments)) . ' more comments and join the discussion by clicking here!</strong>';
+					if(count($comments)) {
+						echo '	<strong>View ' . ($thread['num_comments'] - count($comments)) . ' more comments and join the discussion by clicking here!</strong>';
+					} else {
+						echo '	<strong>Join the discussion by clicking here!</strong>';
+					}
 					echo '	</div>'; // Close .r-meta
 					echo '</div>'; //Close .r-comment
 					echo '</a>'; //Close #reddit
