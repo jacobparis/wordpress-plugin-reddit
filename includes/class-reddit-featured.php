@@ -151,6 +151,7 @@ class Reddit_Featured {
 
 		$plugin_admin = new Reddit_Featured_Admin( $this->get_reddit_featured(), $this->get_version() );
 
+
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
@@ -166,9 +167,10 @@ class Reddit_Featured {
 	private function define_public_hooks() {
 
 		$plugin_public = new Reddit_Featured_Public( $this->get_reddit_featured(), $this->get_version() );
-
+		
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action( 'display_featured_post', $plugin_public, 'display_featured_post');
 
 	}
 

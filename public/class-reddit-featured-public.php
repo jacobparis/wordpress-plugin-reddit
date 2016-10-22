@@ -100,4 +100,52 @@ class Reddit_Featured_Public {
 
 	}
 
+	public function display_featured_post($id) {
+		$link = get_post_meta($id, 'Reddit Link', true);
+      if($link) {
+          $url      = "https://www.reddit.com/{$link}/_";
+          $response = wp_remote_get( esc_url_raw( $url . ".json?sort=top&limit=4" ) );
+
+          /* Will result in $api_response being an array of data,
+          parsed from the JSON response of the API listed above */
+          $api_response = json_decode( wp_remote_retrieve_body( $response ), true );
+          $thread = $api_response[0]['data']['children'][0]['data'];
+
+          echo '<a id="reddit" href="'.$url.'">';
+					echo '  <div class="r-op">';
+					echo '    <div class="r-slant"></div>';
+					echo '    <div class="r-header r-meta">' . $thread['title'] . " by <strong>" . $thread['author'] . '</strong></div>';
+					echo '    <div class="r-body">';
+					echo '			<span>' . $thread['selftext'] . '</span>';
+					echo '    </div>'; //Close .r-body
+					echo '  </div>'; //Close .r-op
+
+    			$comments = array_slice($api_response[1]['data']['children'],0,3);
+    			foreach($comments as $commentHeader) {
+      			$comment = $commentHeader['data'];
+						$score = $comment['score'] == 1 ? $comment['score'] . " point" : $comment['score'] . " points";
+						$num_replies = $comment['replies'] ? $comment['replies']['data']['children'][0]['data']['count'] : 0;
+						$replies = $num_replies == 1 ? $num_replies . " reply" : $num_replies . " replies";
+						$replies = $num_replies ? ' and ' . $replies : "";
+      			echo '<div class="r-comment">';
+		        echo '  <div class="r-meta">';
+						echo '	  <strong>' . $comment['author'] . ' </strong>';
+						echo 		  $score;
+						echo 		  $replies;
+						echo '	</div>'; //Close .r-meta
+		        echo '  <div class="r-body">';
+						echo '			<span>' . $comment['body'] . '</span>';
+						echo '  </div>'; //Close .r-body
+		        echo '</div>';
+    			}
+					/* Join the discussion action prompt */
+					echo '<div class="r-comment">';
+					echo '  <div class="r-meta">';
+					echo '	<strong>View ' . ($thread['num_comments'] - count($comments)) . ' more comments and join the discussion by clicking here!</strong>';
+					echo '	</div>'; // Close .r-meta
+					echo '</div>'; //Close .r-comment
+					echo '</a>'; //Close #reddit
+				}
+	}
+
 }
