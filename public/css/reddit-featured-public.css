@@ -2,3 +2,58 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+ #reddit {
+  display: block;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  position: relative;
+}
+#reddit:hover {
+  text-decoration: none;
+}
+#reddit:hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+#reddit:hover::after {
+  content: 'Discuss on Reddit';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  text-align: center;
+  font-size: 8vw;
+  -webkit-transform: translateY(-45%);
+  -moz-transform: translateY(-45%);
+  -ms-transform: translateY(-45%);
+  color: white;
+}
+@media (min-width: 991px) {
+  #reddit:hover::after {
+    font-size: 90px;
+  }
+}
+
+#reddit .r-header,
+#reddit .r-comment,
+#reddit .r-body {
+  padding: 6px;
+}
+
+#reddit .r-meta {
+  font-size: 80%;
+}

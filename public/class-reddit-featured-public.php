@@ -113,7 +113,6 @@ class Reddit_Featured_Public {
 
           echo '<a id="reddit" href="'.$url.'">';
 					echo '  <div class="r-op">';
-					echo '    <div class="r-slant"></div>';
 					echo '    <div class="r-header r-meta">' . $thread['title'] . " by <strong>" . $thread['author'] . '</strong></div>';
 					echo '    <div class="r-body">';
 					echo '			<span>' . $thread['selftext'] . '</span>';
