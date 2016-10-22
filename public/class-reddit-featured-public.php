@@ -104,7 +104,7 @@ class Reddit_Featured_Public {
 		$link = get_post_meta($id, 'Reddit Link', true);
       if($link) {
           $url      = "https://www.reddit.com/{$link}/_";
-          $response = wp_remote_get( esc_url_raw( $url . ".json?sort=top&limit=4" ) );
+          $response = wp_remote_get( esc_url_raw( $url . ".json?sort=top&limit=3&depth=1" ) );
 
           /* Will result in $api_response being an array of data,
           parsed from the JSON response of the API listed above */
@@ -140,7 +140,7 @@ class Reddit_Featured_Public {
 					/* Join the discussion action prompt */
 					echo '<div class="r-comment">';
 					echo '  <div class="r-meta">';
-					if(count($comments)) {
+					if($thread['num_comments'] - count($comments) > 0) {
 						echo '	<strong>View ' . ($thread['num_comments'] - count($comments)) . ' more comments and join the discussion by clicking here!</strong>';
 					} else {
 						echo '	<strong>Join the discussion by clicking here!</strong>';
