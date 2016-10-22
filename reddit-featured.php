@@ -8,13 +8,13 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://jacobpariseau.com/redditfeatured.html
+ * @link              https://www.jacobpariseau.com/plugin-reddit-featured/
  * @since             1.0.0
  * @package           Reddit_Featured
  *
  * @wordpress-plugin
  * Plugin Name:       Reddit Featured
- * Plugin URI:        http://example.com/reddit-featured-uri/
+ * Plugin URI:        https://github.com/JacobPariseau/Reddit-Featured
  * Description:       This allows you to feature a reddit post on your site
  * Version:           1.0.0
  * Author:            Jacob Pariseau
